@@ -3,7 +3,7 @@
 ## Overview
 When using kafka in spark stream it's hard to track the progress of the streaming application. The problem is caused because spark streaming is not using the consumer groups and not committing the offsets. This solution is showing how we can utilise the consumer groups committing to track the consumer group lag.
 
-## technicalities
+## Technicalities
 
 We extended the StreamingQueryListener with DummySparkStreamListener, this class is called on each streaming batch and produces metrics events, you can read more about it here https://jaceklaskowski.gitbooks.io/spark-structured-streaming/content/spark-sql-streaming-StreamingQueryListener.html.
 
