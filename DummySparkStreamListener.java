@@ -13,8 +13,9 @@ public class DummySparkStreamListener extends StreamingQueryListener {
     private KafkaConsumer<String, String> listenerConsumer;
 
     public DummySparkStreamListener(KafkaConsumer<String, String> consumer) {
+        // consumer is connected to spark stream kafka consumer group
         super();
-        this.listenerConsumer = consumer;
+        this.listenerConsumer = consumer; 
 
     }
 
@@ -28,10 +29,6 @@ public class DummySparkStreamListener extends StreamingQueryListener {
         // runs on each sources in the event of the batch (maybe be different sources)
         for (SourceProgress sourceProgress : event.progress()
             .sources()) {
-            if (sourceProgress.description()
-                .contains("s3")) {
-                return;
-            }
             Map<TopicPartition, OffsetAndMetadata> totalTopicPartitionMap = new HashMap<>();
             try {
                 ObjectMapper mapper = new ObjectMapper();
